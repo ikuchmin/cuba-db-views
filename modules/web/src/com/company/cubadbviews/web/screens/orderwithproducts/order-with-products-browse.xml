@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.cubadbviews.web.screens.orderwithproducts.OrderWithProductsBrowse"
+        focusComponent="orderWithProductsesTable"
+        lookupComponent="orderWithProductsesTable"
+        messagesPack="com.company.cubadbviews.web.screens.orderwithproducts">
+    <dsContext>
+        <groupDatasource id="orderWithProductsesDs"
+                         class="com.company.cubadbviews.entity.OrderWithProducts"
+                         view="_local">
+            <query>
+                <![CDATA[select e from cubadbviews$OrderWithProducts e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="orderWithProductsesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="orderWithProductsesTable"
+                datasource="orderWithProductsesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="orderWithProductsesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="customer"/>
+                <column id="products"/>
+            </columns>
+            <rows datasource="orderWithProductsesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="orderWithProductsesTable.create"/>
+                <button id="editBtn" action="orderWithProductsesTable.edit"/>
+                <button id="removeBtn" action="orderWithProductsesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

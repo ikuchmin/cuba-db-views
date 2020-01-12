@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="cubadbviews$Order" name="order-edit-view" extends="_local">
+        <property name="customer" view="_minimal"/>
+        <property name="items" view="_minimal">
+            <property name="product" view="_minimal"/>
+        </property>
+    </view>
+    <view entity="cubadbviews$OrderItem" name="orderItem-edit-view" extends="_local">
+        <property name="product" view="_minimal"/>
+    </view>
+</views>
