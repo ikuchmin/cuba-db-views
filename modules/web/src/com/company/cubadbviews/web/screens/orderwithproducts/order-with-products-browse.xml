@@ -11,8 +11,22 @@
                          view="_local">
             <query>
                 <![CDATA[select e from cubadbviews$OrderWithProducts e]]>
+                <filter>
+                    <or>
+                        <c>
+                            FUNCTION('contains_in_array', e.productIds, :component$productFilterField) = true
+                        </c>
+                    </or>
+                </filter>
             </query>
         </groupDatasource>
+        <collectionDatasource id="productDs"
+                              class="com.company.cubadbviews.entity.Product"
+                              view="_minimal">
+            <query>
+                <![CDATA[select p from cubadbviews$Product p]]>
+            </query>
+        </collectionDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -23,6 +37,16 @@
                 datasource="orderWithProductsesDs">
             <properties include=".*"/>
         </filter>
+        <groupBox spacing="true" height="AUTO" width="100%" expand="">
+            <hbox id="productFilterBox" spacing="true" height="AUTO" width="AUTO">
+                <label id="productFilterLabel"
+                       align="MIDDLE_CENTER"
+                       value="msg://filter.product.caption"/>
+                <lookupField id="productFilterField"
+                             optionsDatasource="productDs"/>
+            </hbox>
+            <button id="Search" caption="msg://searchBtn.caption" invoke="onSearch"/>
+        </groupBox>
         <groupTable id="orderWithProductsesTable"
                     width="100%">
             <actions>

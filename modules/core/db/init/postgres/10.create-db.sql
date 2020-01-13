@@ -66,12 +66,19 @@ create table CUBADBVIEWS_ORDER_ITEM (
 -- end CUBADBVIEWS_ORDER_ITEM
 -- begin CUBADBVIEWS_ORDER_WITH_PRODUCTS
 create or replace view CUBADBVIEWS_ORDER_WITH_PRODUCTS as
+with products as (
+    select coi.order_id,
+           string_agg(p.name, ', ' order by p.name) as products,
+           json_agg(p.id)                           as product_ids,
+    from cubadbviews_product p
+             join cubadbviews_order_item coi on p.ID = coi.product_id
+    group by coi.order_id
+)
 select o.*,
        c.first_name || ' ' || c.LAST_NAME as customer,
-       (select string_agg(p.name, ', ' order by p.name)
-        from cubadbviews_product p
-                 join cubadbviews_order_item coi on p.ID = coi.product_id
-        where coi.order_id = o.id) as products
+       p.product_ids,
+       p.products
 from cubadbviews_order as o
-         join cubadbviews_customer c on o.customer_id = c.id ^
+         join cubadbviews_customer c on o.customer_id = c.id
+         join products p on p.order_id = o.id^
 -- end CUBADBVIEWS_ORDER_WITH_PRODUCTS

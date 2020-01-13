@@ -10,4 +10,8 @@
     <view entity="cubadbviews$OrderItem" name="orderItem-edit-view" extends="_local">
         <property name="product" view="_minimal"/>
     </view>
+    <view entity="cubadbviews$OrderWithProducts" name="orderWithProducts-browse-view">
+        <property name="customer"/>
+        <property name="products"/>
+    </view>
 </views>
