@@ -10,15 +10,13 @@ import com.haulmont.cuba.gui.data.GroupDatasource;
 import javax.inject.Inject;
 import java.util.UUID;
 
+@SuppressWarnings("CdiInjectionPointsInspection")
 public class OrderWithProductsBrowse extends AbstractLookup {
 
     @Inject
-    protected LookupField productFilterField;
-
-    @Inject
-    protected GroupDatasource<OrderWithProducts, UUID> orderWithProductsesDs;
+    protected GroupDatasource<OrderWithProducts, UUID> orderWithProductsDs;
 
     public void onSearch() {
-        orderWithProductsesDs.refresh();
+        orderWithProductsDs.refresh();
     }
 }

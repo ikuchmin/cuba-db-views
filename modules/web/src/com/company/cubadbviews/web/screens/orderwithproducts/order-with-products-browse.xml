@@ -2,11 +2,11 @@
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://browseCaption"
         class="com.company.cubadbviews.web.screens.orderwithproducts.OrderWithProductsBrowse"
-        focusComponent="orderWithProductsesTable"
-        lookupComponent="orderWithProductsesTable"
+        focusComponent="orderWithProductsTable"
+        lookupComponent="orderWithProductsTable"
         messagesPack="com.company.cubadbviews.web.screens.orderwithproducts">
     <dsContext>
-        <groupDatasource id="orderWithProductsesDs"
+        <groupDatasource id="orderWithProductsDs"
                          class="com.company.cubadbviews.entity.OrderWithProducts"
                          view="_local">
             <query>
@@ -30,11 +30,11 @@
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="orderWithProductsesTable"
+    <layout expand="orderWithProductsTable"
             spacing="true">
         <filter id="filter"
-                applyTo="orderWithProductsesTable"
-                datasource="orderWithProductsesDs">
+                applyTo="orderWithProductsTable"
+                datasource="orderWithProductsDs">
             <properties include=".*"/>
         </filter>
         <groupBox spacing="true" height="AUTO" width="100%" expand="">
@@ -47,7 +47,7 @@
             </hbox>
             <button id="Search" caption="msg://searchBtn.caption" invoke="onSearch"/>
         </groupBox>
-        <groupTable id="orderWithProductsesTable"
+        <groupTable id="orderWithProductsTable"
                     width="100%">
             <actions>
                 <action id="create"
@@ -60,13 +60,13 @@
                 <column id="customer"/>
                 <column id="products"/>
             </columns>
-            <rows datasource="orderWithProductsesDs"/>
+            <rows datasource="orderWithProductsDs"/>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="orderWithProductsesTable.create"/>
-                <button id="editBtn" action="orderWithProductsesTable.edit"/>
-                <button id="removeBtn" action="orderWithProductsesTable.remove"/>
+                <button id="createBtn" action="orderWithProductsTable.create"/>
+                <button id="editBtn" action="orderWithProductsTable.edit"/>
+                <button id="removeBtn" action="orderWithProductsTable.remove"/>
             </buttonsPanel>
         </groupTable>
     </layout>
